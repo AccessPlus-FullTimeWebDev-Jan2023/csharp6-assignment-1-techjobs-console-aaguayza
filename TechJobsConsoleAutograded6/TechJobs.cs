@@ -20,6 +20,7 @@ namespace TechJobsConsoleAutograded6
             columnChoices.Add("location", "Location");
             columnChoices.Add("position type", "Position Type");
             columnChoices.Add("all", "All");
+        
 
             Console.WriteLine("Welcome to LaunchCode's TechJobs App!");
 
@@ -60,6 +61,8 @@ namespace TechJobsConsoleAutograded6
                     // What is their search term?
                     Console.WriteLine(Environment.NewLine + "Search term: ");
                     string searchTerm = Console.ReadLine();
+                    
+                    
 
                     // Fetch results
                     if (columnChoice.Equals("all"))
@@ -135,6 +138,10 @@ namespace TechJobsConsoleAutograded6
         // TODO: complete the PrintJobs method.
         public void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
+            if(someJobs.Count == 0)
+            {
+                Console.WriteLine("No results");
+            }
             foreach (Dictionary<string, string> job in someJobs)
             {
                 Console.WriteLine($"{Environment.NewLine}*****");
@@ -142,9 +149,10 @@ namespace TechJobsConsoleAutograded6
                 {
                     Console.WriteLine($"{item.Key}: {item.Value}");
                 }
-                Console.WriteLine($"*****hahahahahahahahah");
+                Console.WriteLine($"*****");
             }
         }
+        
     }
 }
 
