@@ -1,5 +1,5 @@
 ﻿using System;
-
+using TechJobsConsoleAutograded6;
 namespace TechJobsConsoleAutograded6
 {
 	public class TechJobs
@@ -20,6 +20,7 @@ namespace TechJobsConsoleAutograded6
             columnChoices.Add("location", "Location");
             columnChoices.Add("position type", "Position Type");
             columnChoices.Add("all", "All");
+        
 
             Console.WriteLine("Welcome to LaunchCode's TechJobs App!");
 
@@ -60,11 +61,14 @@ namespace TechJobsConsoleAutograded6
                     // What is their search term?
                     Console.WriteLine(Environment.NewLine + "Search term: ");
                     string searchTerm = Console.ReadLine();
+                    
+                    
 
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
+                        List<Dictionary<string, string>> searchResults = TechJobsConsoleAutograded6.JobData.FindByValue(searchTerm);
+                        PrintJobs(searchResults);
                     }
                     else
                     {
@@ -135,8 +139,22 @@ namespace TechJobsConsoleAutograded6
         // TODO: complete the PrintJobs method.
         public void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("PrintJobs is not implemented yet");
+            if(someJobs.Count == 0)
+            {
+                Console.WriteLine("No results");
+            }
+            foreach (Dictionary<string, string> job in someJobs)
+            {
+                Console.WriteLine($"{Environment.NewLine}*****");
+                foreach (KeyValuePair<string, string> item in job)
+                {
+                    Console.WriteLine($"{item.Key}: {item.Value}");
+                }
+                Console.WriteLine($"*****");
+            }
         }
+
+        
     }
 }
 

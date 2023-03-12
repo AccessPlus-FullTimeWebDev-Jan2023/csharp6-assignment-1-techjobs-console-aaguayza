@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace TechJobsConsoleAutograded6
@@ -46,8 +47,22 @@ namespace TechJobsConsoleAutograded6
         {
             // load data, if not already loaded
             LoadData();
+            List < Dictionary<string, string> > jobs = new List<Dictionary<string, string>>();
+            foreach(Dictionary<string, string> job in AllJobs)
+            {
+                foreach(KeyValuePair<string,string> i in job)
+                {
+                    if (i.Value.Contains(value, StringComparison.CurrentCultureIgnoreCase)) {
+                        jobs.Add(job);
+                        break;
+                    }
+                }
+            }
+            
+            
 
-            return null;
+
+            return jobs;
         }
 
         /**
@@ -63,14 +78,13 @@ namespace TechJobsConsoleAutograded6
             LoadData();
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
-
             foreach (Dictionary<string, string> row in AllJobs)
             {
                 string aValue = row[column];
 
 
                 //TODO: Make search case-insensitive
-                if (aValue.Contains(value))
+                if (aValue.Contains(value, StringComparison.CurrentCultureIgnoreCase))
                 {
                     jobs.Add(row);
                 }
