@@ -1,5 +1,5 @@
 ﻿using System;
-
+using TechJobsConsoleAutograded6;
 namespace TechJobsConsoleAutograded6
 {
 	public class TechJobs
@@ -67,7 +67,8 @@ namespace TechJobsConsoleAutograded6
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
+                        List<Dictionary<string, string>> searchResults = TechJobsConsoleAutograded6.JobData.FindByValue(searchTerm);
+                        PrintJobs(searchResults);
                     }
                     else
                     {
@@ -152,6 +153,7 @@ namespace TechJobsConsoleAutograded6
                 Console.WriteLine($"*****");
             }
         }
+
         
     }
 }
